@@ -1,4 +1,4 @@
-# MapAng
+# PM10 Sensor Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
@@ -6,22 +6,29 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Production build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The build process is automated by a multi-stage ``Dockerfile`` which compiles an image with the build output from 
+the Angular build with ahead of time compilation, production optimizations and configured with the latest version of nginx.
 
-## Build
+Below are the are the steps for building, deploying and stopping containers. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Build image
+```
+docker build -t production:latest .
+```
 
-## Running unit tests
+### Deploying container
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+docker run -p 80:80 production:latest
+```
 
-## Running end-to-end tests
+### Stopping containers
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Uses a filter to stop by tag name. An alternative is running docker ps and docker stop <container id>
 
-## Further help
+```
+docker stop $(docker ps -q --filter ancestor=production:latest )
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
