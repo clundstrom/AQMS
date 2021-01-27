@@ -1,0 +1,23 @@
+.chart-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  margin: 30px;
+}
+
+.chart-frame {
+  margin-top: 5em;
+  //border: 2px solid black;
+  height: 80%;
+  width: 100%;
+}
+
+#chart {
+  height: 100%;
+}
+:host ::ng-deep canvas {
+  font-size: 17px;
+}
+
