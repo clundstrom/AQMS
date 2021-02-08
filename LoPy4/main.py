@@ -6,6 +6,8 @@ import pycom
 
 import keys
 
+pycom.heartbeat(False)
+
 # Initialise LoRa in LORAWAN mode.
 # Please pick the region that matches where you are using the device:
 # Europe = LoRa.EU868
@@ -15,12 +17,16 @@ app_eui = ubinascii.unhexlify(keys.APP_EUI)
 app_key = ubinascii.unhexlify(keys.APP_KEY)
 #lora.join(activation=LoRa.OTAA, auth=(app_eui, app_key), timeout=0)
 
+lora.join(activation=LoRa.OTAA, auth=(app_eui, app_key), timeout=0)
+
 # wait until the module has joined the network
 while not lora.has_joined():
+    pycom.rgbled(0xFF0000)  # Red
     time.sleep(2.5)
     print('Not joined yet...')
 
 print('Network joined!')
+pycom.rgbled(0x00FF00)  # Green
 
 # create socket to be used for LoRa communication
 s = socket.socket(socket.AF_LORA, socket.SOCK_RAW)
@@ -39,6 +45,7 @@ s.send(bytes([0x01,0x02,0x03]))
 s.setblocking(False)
 # get any data received...
 data = s.recv(64)
+pycom.rgbled(0x0000FF)  # Blue
 print(data)
 
 
