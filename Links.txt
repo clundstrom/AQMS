@@ -1,0 +1,8 @@
+Arduino:
+
+https://www.instructables.com/How-to-Interface-With-Optical-Dust-Sensor/
+
+https://create.arduino.cc/projecthub/mircemk/diy-air-quality-monitor-with-sharp-gp2y1010au0f-sensor-7b0262
+
+Micropython:
+https://www.mka.in/wp/air-quality-monitor-using-gp2y1010au0f-sensor-on-micropython-based-nodemcu/
