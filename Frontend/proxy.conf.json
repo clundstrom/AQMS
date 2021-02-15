@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://pm10_ttn.data.thethingsnetwork.org/api/v2/",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
