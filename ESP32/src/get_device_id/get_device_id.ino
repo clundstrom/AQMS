@@ -1,3 +1,5 @@
+#include "Arduino.h"
+
 uint64_t chipid;
 
 void setup() {
