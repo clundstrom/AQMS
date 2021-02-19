@@ -9,7 +9,9 @@ import {HttpService} from './services/http.service';
 export class AppComponent implements OnInit {
   title = 'MapAng';
 
-  data = '';
+  dataString = '';
+  jsonData = [];
+  temp = [];
 
   constructor(private http: HttpService) {
   }
@@ -17,12 +19,18 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  printData() {
+  printTemp() {
     const obs = this.http.getData();
     obs.subscribe((res) => {
       if (res) {
-        this.data = res as string;
-        console.log(res);
+        this.dataString = JSON.stringify(res);
+        this.jsonData = JSON.parse(this.dataString);
+        this.jsonData = this.jsonData.slice(63, 70);
+        var values = [];
+        
+
+        this.jsonData.forEach((element) => values.push(element.temperature))
+        this.temp = values;
       }
     });
   }

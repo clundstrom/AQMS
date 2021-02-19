@@ -14,10 +14,10 @@ export class HttpService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        Authorization: 'key ttn-account-v2.y3SSzk4AL71HFSGPxgnhoFPvZczPJAgsV92Xvl2EbVE'
+        Authorization: 'key ttn-account-v2.VzGWLoM6Nh03MFCY82JG-iNAQXmAEkaC9GPpNeOBNtg'
       })
     };
-    const url = 'http://localhost:4200/api/devices';
+    const url = 'http://localhost:4200/api/query?last=24h';
 
     return this.httpClient.get(url, httpOptions);
   }
