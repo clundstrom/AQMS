@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import { getTemplateContent } from '@angular/core/src/sanitization/html_sanitizer';
-import {ChartDataSets, ChartOptions} from 'chart.js';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {ChartDataSets} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
 import {HttpService} from '../../services/http.service';
 
@@ -9,18 +8,15 @@ import {HttpService} from '../../services/http.service';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, AfterViewInit {
 
-  dataString = '';
   jsonData = [];
-  temp = [1,2,3,4,5,6,7];
 
   constructor(private http: HttpService) {
-    
   }
 
   public lineChartData: ChartDataSets[] = [
-    { data: this.temp, label: 'Concentration μg/m\u00B3' },
+    {data: [], label: 'Concentration μg/m\u00B3'},
   ];
   public lineChartLabels: Label[] = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
 
@@ -35,30 +31,28 @@ export class ChartComponent implements OnInit {
   public lineChartPlugins = [];
 
 
-
   ngOnInit() {
-    this.lineChartData[0].data = this.getTemp();
+    this.getTemp();
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
   getTemp() {
     const obs = this.http.getData();
     obs.subscribe((res) => {
       if (res) {
-        this.dataString = JSON.stringify(res);
-        this.jsonData = JSON.parse(this.dataString);
-        this.jsonData = this.jsonData.slice(63, 70);
-        var values = [];
-        
+        const data = res as object[];
+        this.jsonData = data.slice(63, 70);
+        const values = [];
 
-        this.jsonData.forEach((element) => values.push(element.temperature))
-        this.temp = values;
-        console.log(this.temp);
-        this.lineChartData[0].data = this.temp;
+        this.jsonData.forEach((element) => values.push(element.temperature));
+
+        this.lineChartData[0].data = values;
+        this.lineChartData = [...this.lineChartData];
       }
     });
-
-    
-    return this.temp;
   }
 
 }
