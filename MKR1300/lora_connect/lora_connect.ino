@@ -27,10 +27,14 @@ void setup() {
   
   // put your setup code here, to run once:
   Serial.begin(9600);
+  while(!Serial);
+  Serial.println("Initiating.");
   dht.begin();
 
   if (!modem.begin(EU868)) {
     while (1) {
+      delay(1000);
+      Serial.println("MOdem begin failed.");
       /*digitalWrite(6, HIGH);   // turn the LED on (HIGH is the voltage level)
       delay(100);
       digitalWrite(6, LOW);
@@ -40,6 +44,14 @@ void setup() {
   };
 
   int connected = modem.joinOTAA(appEui, appKey);
+
+  if(connected){
+    Serial.println("Connected.");
+  }
+
+  else {
+    Serial.println("Unable to connect.");
+  }
 
 
   /*if (!connected) {
@@ -61,7 +73,9 @@ void loop() {
   //Read data and store it to variables hum and temp
   uint16_t temp = dht.readTemperature()*10;
   uint8_t hum = dht.readHumidity();
-
+  Serial.println(temp);
+  Serial.println(hum);
+  
   byte payload[3];
   payload[0] = highByte(temp);
   payload[1] = lowByte(temp);
@@ -73,6 +87,4 @@ void loop() {
   modem.endPacket(true);
 
   delay(10000);
-  
-
 }
