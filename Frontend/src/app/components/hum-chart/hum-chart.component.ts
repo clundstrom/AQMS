@@ -4,19 +4,18 @@ import {Color, Label} from 'ng2-charts';
 import {HttpService} from '../../services/http.service';
 
 @Component({
-  selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  selector: 'app-hum-chart',
+  templateUrl: './hum-chart.component.html',
+  styleUrls: ['./hum-chart.component.css']
 })
-export class ChartComponent implements OnInit, AfterViewInit {
+export class HumChartComponent implements OnInit, AfterViewInit {
 
   jsonData = [];
 
-  constructor(private http: HttpService) {
-  }
-
+  constructor(private http: HttpService) { }
   public lineChartData: ChartDataSets[] = [
-    {data: [], label: 'Concentration μg/m\u00B3'},
+    {data: [], label: 'Humidity'},
+
   ];
   public lineChartLabels: Label[] = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
 
@@ -44,13 +43,18 @@ export class ChartComponent implements OnInit, AfterViewInit {
     obs.subscribe((res) => {
       if (res) {
         const data = res as object[];
-        this.jsonData = data.slice(63, 70);
-        const values = [];
+        this.jsonData = data.slice(-25, -1);
+        const hum_values = [];
+        const times = [];
 
-        this.jsonData.forEach((element) => values.push(element.temperature));
+        this.jsonData.forEach((element) => hum_values.push(element.humidity));
+        this.jsonData.forEach((element) => times.push(new Date(element.time).getUTCHours()+":"+new Date(element.time).getUTCMinutes()) );
 
-        this.lineChartData[0].data = values;
+        this.lineChartData[0].data = hum_values;
         this.lineChartData = [...this.lineChartData];
+
+        this.lineChartLabels=times;
+        this.lineChartLabels=[...this.lineChartLabels]
       }
     });
   }

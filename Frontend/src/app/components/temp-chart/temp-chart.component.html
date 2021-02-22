@@ -1,0 +1,16 @@
+<div class="chart-container">
+  <div class="chart-frame">
+    <div id="chart">
+      <div class="canvas">
+        <canvas baseChart
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>

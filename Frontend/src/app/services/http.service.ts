@@ -17,7 +17,7 @@ export class HttpService {
         Authorization: 'key ttn-account-v2.VzGWLoM6Nh03MFCY82JG-iNAQXmAEkaC9GPpNeOBNtg'
       })
     };
-    const url = 'http://localhost:4200/api/query?last=24h';
+    const url = 'http://localhost:4200/api/query?last=7d';
 
     return this.httpClient.get(url, httpOptions);
   }
