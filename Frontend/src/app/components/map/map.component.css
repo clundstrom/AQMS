@@ -1,6 +1,6 @@
 .map-container {
   position: absolute;
-  top: 20%;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -8,9 +8,9 @@
 }
 
 .map-frame {
-  margin-top: 5em;
-  height: 80%;
-  width: 50%;
+  margin-top: 3em;
+  height: 50%;
+  width: 100%;
 }
 
 #map {

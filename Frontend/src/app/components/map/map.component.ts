@@ -20,11 +20,11 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   private initMap(): void {
 
-    const kalmarCoords = [56.6634, 16.3568];
+    const kalmarCoords = [56.6634, 16.3468];
 
     this.map = L.map('map', {
       center: kalmarCoords,
-      zoom: 12
+      zoom: 14
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
