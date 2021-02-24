@@ -1,3 +1,65 @@
-.myBtn {
- z-index: 1;
+.main {
+  color: #F6F7F8;
+  background: rgb(32, 164, 243);
+  background: linear-gradient(90deg, rgba(32, 164, 243, 1) 14%, rgba(0, 212, 255, 1) 67%);
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.header{
+  margin: 4em;
+  order: 1;
+}
+
+.body {
+  width: 100%;
+  height: 30rem;
+  order: 2;
+}
+
+.footer {
+  width: 100%;
+  height: 10rem;
+  order: 3;
+}
+h3 {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 400;
+}
+
+h1 {
+  font-family: "Google Sans", sans-serif;
+  color: #F6F7F8;
+  font-size: 52px;
+  line-height: 62px;
+  font-weight: 500;
+}
+
+.btn {
+  background-color: #f6f7f8;
+  border-radius: 20px;
+  display: inline-block;
+  cursor: pointer;
+  color: #20a6f3;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 12px 44px;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #e3e6e8;
+}
+
+.btn:active {
+  position: relative;
+  top: 1px;
+}
+
+

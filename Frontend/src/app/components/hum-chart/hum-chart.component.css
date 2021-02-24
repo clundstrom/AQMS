@@ -1,21 +1,10 @@
-.chart-container {
-  position: absolute;
-  top: 50%;
-  left: 30%;
-  right: 0;
-  bottom: 0;
-  margin: 30px;
-}
-
 .chart-frame {
-  margin-top: 5em;
-  //border: 2px solid black;
-  height: 100%;
   width: 43%;
 }
 
 #chart {
   height: 100%;
+  background: #F6F7F8;
 }
 :host ::ng-deep canvas {
   font-size: 17px;
