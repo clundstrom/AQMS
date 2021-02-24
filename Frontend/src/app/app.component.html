@@ -9,11 +9,19 @@
         Check out the air quality in your area.
       </h3>
       <button class="btn">Get Started</button>
+
+      <img class="notice" src="https://www.nhpr.org/sites/nhpr/files/styles/medium/public/201907/EPALogo.png"
+           width="5%">
+      <span class="notice"> We support the Clean Air Act!</span>
     </div>
     <div class="body">
-    <app-map></app-map>
+      <app-map></app-map>
     </div>
-    <div class="footer">
+    <div class="chart1">
+      <app-temp-chart></app-temp-chart>
+    </div>
+    <div class="chart2">
+      <app-hum-chart></app-hum-chart>
     </div>
   </div>
 </div>

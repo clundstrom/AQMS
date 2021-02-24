@@ -1,9 +1,4 @@
-.chart-frame {
-  width: 43%;
-}
-
-#chart {
-  height: 100%;
+.chart {
   background: #F6F7F8;
 }
 :host ::ng-deep canvas {
