@@ -2,3 +2,6 @@
 keys.py
 keys.h
 .vscode
+*.env
+influxdb
+telegraf
