@@ -1,5 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
+import "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/images/marker-icon-2x.png";
+import "leaflet/dist/images/marker-icon.png";
 
 @Component({
   selector: 'app-map',
@@ -8,11 +11,14 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements OnInit, AfterViewInit {
 
+
+
   constructor() {
   }
 
   private map;
   private markerLayer: L.FeatureGroup = new L.FeatureGroup();
+
 
   ngOnInit() {
   }
@@ -20,11 +26,13 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   private initMap(): void {
 
+
+
     const kalmarCoords = [56.6634, 16.3468];
 
     this.map = L.map('map', {
       center: kalmarCoords,
-      zoom: 14
+      zoom: 13
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -35,19 +43,32 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     this.map.addLayer(this.markerLayer);
 
-    this.map.on('click', (e) => {
-      this.markerLayer.clearLayers();
-      const marker = new L.Marker([e.latlng.lat, e.latlng.lng], {clickable: true});
+    var streets = [];
+    var sjobrings = L.marker([56.661671, 16.325510]).addTo(this.map);
+    sjobrings.bindPopup("<b>Sjöbrings väg</b>").openPopup();
+    var vapnareg = L.marker([56.68428869110707, 16.34386830396531]).addTo(this.map);
+    vapnareg.bindPopup("<b>Väpnaregatan</b>").openPopup();
 
-      marker.bindPopup('Stuff', {
-        showOnMouseOver: true
-      });
+    streets.push(sjobrings);
+    streets.push(vapnareg);
 
-      this.markerLayer.addLayer(marker);
+    streets.forEach(element => {
+      element.on('mouseover', function(e){
+        this.openPopup();  
+      })
+
+      element.on('mouseout', function(e){
+        this.closePopup();  
+      })
     });
+    
+    
+  
+
   }
 
   ngAfterViewInit() {
     this.initMap();
   }
+
 }
