@@ -17,19 +17,19 @@
       <app-map></app-map>
     </div>
     <div class="tempChart">
-      Temp chart
-      <!--<iframe src="http://localhost:3000/d-solo/uj2YVbsGk/vapnareg?orgId=1&panelId=2" width="450" height="200" frameborder="0"></iframe>-->
+      <div>Temp chart</div>
+      <iframe [src]="tempsrc" width="450" height="200" frameborder="0"></iframe>
     </div>
     <div class="humidityChart">
-      Humidity chart
-      <!--<iframe src="http://localhost:3000/d-solo/uj2YVbsGk/vapnareg?orgId=1&panelId=4" width="450" height="200" frameborder="0"></iframe>-->
+      <div>Humidity chart</div>
+      <iframe id="humsrc" [src]="humsrc" width="450" height="200" frameborder="0"></iframe>
     </div>
     <div class="airPressureChart">
-      Air Pressure Chart
-      <!--<iframe src="http://localhost:3000/d-solo/uj2YVbsGk/vapnareg?orgId=1&panelId=6" width="450" height="200" frameborder="0"></iframe>-->
+      <div>Air Pressure Chart</div>
+      <iframe [src]="pressuresrc" width="450" height="200" frameborder="0"></iframe>
     </div>
     <div class="particularDensityChart">
-      Particular Density Chart
+      <div>Particular Density Chart</div>
     </div>
   </div>
 </div>

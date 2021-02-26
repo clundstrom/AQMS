@@ -4,6 +4,7 @@ import "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/images/marker-icon-2x.png";
 import "leaflet/dist/images/marker-icon.png";
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -54,7 +55,8 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     streets.forEach(element => {
       element.on('mouseover', function(e){
-        this.openPopup();  
+        this.openPopup(); 
+
       })
 
       element.on('mouseout', function(e){
