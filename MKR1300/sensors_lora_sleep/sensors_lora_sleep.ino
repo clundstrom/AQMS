@@ -2,6 +2,7 @@
 #include <MKRWAN.h>;
 #include <Adafruit_BMP280.h>
 #include "keys.h"
+#include "ArduinoLowPower.h"
 
 #define DHTPIN 7      // what pin we're connected to
 #define DHTTYPE DHT22 // DHT 22  (AM2302)
@@ -16,10 +17,7 @@ Adafruit_BMP280 bmp; // I2C Interface
 */
 bool setupBMP(Adafruit_BMP280 &bmp)
 {
-    if (!bmp.begin())
-    {
-        Serial.println(F("Could not find a valid BMP280 sensor, check wiring!"));
-    }
+    bmp.begin();
 
     /* Default settings from datasheet. */
     bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
@@ -45,9 +43,11 @@ bool setupModem(LoRaModem &modem)
     if (!modem.begin(EU868))
     {
         while (1)
-        {
-            delay(1000);
-            Serial.println("Modem begin failed.");
+        { 
+            digitalWrite(1, LOW);
+            delay(500);
+            digitalWrite(1, HIGH);
+            delay(500); 
         }
     };
 
@@ -57,28 +57,12 @@ bool setupModem(LoRaModem &modem)
     int connected = 1;
     #endif
 
-
-    if (connected)
-    {
-        Serial.println("Connected.");
-    }
-    else
-    {
-        Serial.println("Unable to connect or debugging.");
-    }
     return connected;
 }
 
 void setup()
 {
-    Serial.begin(9600);
-
-    #if DEBUG == 1
-        while(!Serial);
-    #endif
-    
-    Serial.println("Initiating..");
-
+    pinMode(1, OUTPUT);
     setupBMP(bmp);
     setupDHT(dht);
     setupModem(modem);
@@ -86,27 +70,12 @@ void setup()
 
 void loop()
 {
-
     //Read data and store it to variables hum and temp
     uint16_t dht_tmp = dht.readTemperature() * 10;
-    Serial.print(F("DHT temp = "));
     uint8_t hum = dht.readHumidity();
-    Serial.print(dht_tmp);
-    Serial.println(" *C");
-    Serial.print(F("DHT hum = "));
-    Serial.println(hum);
-
-    // BMP
-    Serial.print(F("BMP temp = "));
     uint16_t bmp_tmp = bmp.readTemperature();
-    Serial.print(bmp_tmp);
-    Serial.println(" *C");
-
     uint32_t pressure = bmp.readPressure();
-    Serial.print(F("Pressure = "));
-    Serial.print(pressure/100); //displaying the Pressure in hPa, you can change the unit
-    Serial.println(" hPa");
-
+    uint16_t pm = random(5, 47);
 
     // Payload
     byte payload[6];
@@ -123,5 +92,8 @@ void loop()
     modem.write(payload, sizeof(payload));
     modem.endPacket(true);
 
+    digitalWrite(1, LOW); // Turn off led
+    LowPower.sleep(10000); // Sleep for 10s
+    digitalWrite(1, HIGH); // Turn on led for 2 seconds
     delay(10000);
 }
