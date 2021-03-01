@@ -14,7 +14,7 @@
       <span class="notice"> We support the Clean Air Act!</span>
     </div>
     <div class="body">
-      <app-map></app-map>
+      <app-map (clicked)="setDevice($event)" ></app-map>
     </div>
     <div class="tempChart">
       <div>Temp chart</div>

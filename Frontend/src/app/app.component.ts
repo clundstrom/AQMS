@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -6,8 +6,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
-
 
 export class AppComponent implements OnInit {
 
@@ -18,27 +16,25 @@ export class AppComponent implements OnInit {
   tempsrc: SafeResourceUrl;
   humsrc: SafeResourceUrl;
   pressuresrc: SafeResourceUrl;
-  title = 'MapAng';
+  title = 'Air Quality';
 
   constructor(public sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
-    this.setDevice("http://localhost:3000/d-solo/uj2YVbsGk/vapnareg");
+    this.setDevice("http://85.228.187.157:3000/d-solo/4Yn8LwyMz/sjobrings");
   }
 
-  setDevice(device_route){
-    this.tempurl=device_route+this.tempurl;
-    this.tempsrc= this.sanitizer.bypassSecurityTrustResourceUrl(this.tempurl);
+  setDevice(device_route) {
+    console.log(device_route);
+    let url = device_route + this.tempurl;
+    this.tempsrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
 
-    this.humurl=device_route+this.humurl;
-    this.humsrc= this.sanitizer.bypassSecurityTrustResourceUrl(this.humurl);
+    url = device_route + this.humurl;
+    this.humsrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
 
-    this.pressureurl=device_route+this.pressureurl;
-    this.pressuresrc= this.sanitizer.bypassSecurityTrustResourceUrl(this.pressureurl);
-    
+    url = device_route + this.pressureurl;
+    this.pressuresrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
 
   }
-
-
 }

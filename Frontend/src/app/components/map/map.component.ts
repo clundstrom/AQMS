@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import { AfterViewInit, Component, OnInit, Output } from '@angular/core';
 import * as L from 'leaflet';
+import { EventEmitter } from '@angular/core';
 import "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/images/marker-icon-2x.png";
 import "leaflet/dist/images/marker-icon.png";
@@ -19,6 +20,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   private map;
   private markerLayer: L.FeatureGroup = new L.FeatureGroup();
+  @Output() clicked = new EventEmitter<string>();
 
 
   ngOnInit() {
@@ -47,25 +49,29 @@ export class MapComponent implements OnInit, AfterViewInit {
     var streets = [];
     var sjobrings = L.marker([56.661671, 16.325510]).addTo(this.map);
     sjobrings.bindPopup("<b>Sjöbrings väg</b>").openPopup();
+    sjobrings.on('click', () => { this.clicked.emit("http://85.228.187.157:3000/d-solo/4Yn8LwyMz/sjobrings"); })
+
+
     var vapnareg = L.marker([56.68428869110707, 16.34386830396531]).addTo(this.map);
     vapnareg.bindPopup("<b>Väpnaregatan</b>").openPopup();
+    vapnareg.on('click', () => { this.clicked.emit("http://85.228.187.157:3000/d-solo/jCWeLQsGk/vapnareg"); })
 
     streets.push(sjobrings);
     streets.push(vapnareg);
 
     streets.forEach(element => {
-      element.on('mouseover', function(e){
-        this.openPopup(); 
+      element.on('mouseover', function (e) {
+        this.openPopup();
 
       })
 
-      element.on('mouseout', function(e){
-        this.closePopup();  
+      element.on('mouseout', function (e) {
+        this.closePopup();
       })
     });
-    
-    
-  
+
+
+
 
   }
 
