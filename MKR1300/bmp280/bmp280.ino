@@ -32,7 +32,9 @@ void loop() {
     Serial.print(F("Approx altitude = "));
     Serial.print(bmp.readAltitude(1017)); //The "1019.66" is the pressure(hPa) at sea level in day in your region
     Serial.println(" m");                    //If you don't know it, modify it until you get your current altitude
-
-    Serial.println();
+    int randNumber = random(5, 47);
+    Serial.print(F("PM10 = "));
+    Serial.print(randNumber);
+    Serial.println(" ug");
     delay(2000);
 }
