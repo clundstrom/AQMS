@@ -17,7 +17,7 @@ services:
         networks: 
             - tig-net
         volumes:
-            - ./influxdb:/var/lib/influxdb
+            - /var/lib/influxdb
 
     telegraf:
         image: telegraf:1.17-alpine
@@ -42,11 +42,12 @@ services:
         ports: 
             - 3000:3000
         environment:
+            GF_AUTH_ANONYMOUS_ENABLED: "true"
             GF_SECURITY_ALLOW_EMBEDDING: "true"
             GF_SECURITY_ADMIN_USER: admin
             GF_SECURITY_ADMIN_PASSWORD: admin
         volumes:
-            - ./grafana:/var/lib/grafana
+            - /var/lib/grafana
         networks: 
             - tig-net
         restart: always
