@@ -12,10 +12,12 @@ export class AppComponent implements OnInit {
   tempurl: string = "?orgId=1&panelId=2";
   humurl: string = "?orgId=1&panelId=4";
   pressureurl: string = "?orgId=1&panelId=6";
+  densityurl: string = "?orgId=1&panelId=8";
 
   tempsrc: SafeResourceUrl;
   humsrc: SafeResourceUrl;
   pressuresrc: SafeResourceUrl;
+  densitysrc: SafeResourceUrl;
   title = 'Air Quality';
 
   constructor(public sanitizer: DomSanitizer) {
@@ -35,6 +37,9 @@ export class AppComponent implements OnInit {
 
     url = device_route + this.pressureurl;
     this.pressuresrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
+    url = device_route + this.densityurl;
+    this.densitysrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
 
   }
 }

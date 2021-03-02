@@ -17,7 +17,7 @@
       <app-map (clicked)="setDevice($event)" ></app-map>
     </div>
     <div class="tempChart">
-      <div>Temp chart</div>
+      <div>Temperature chart</div>
       <iframe [src]="tempsrc" width="450" height="200" frameborder="0"></iframe>
     </div>
     <div class="humidityChart">
@@ -30,6 +30,7 @@
     </div>
     <div class="particularDensityChart">
       <div>Particular Density Chart</div>
+      <iframe [src]="densitysrc" width="450" height="200" frameborder="0"></iframe>
     </div>
   </div>
 </div>
