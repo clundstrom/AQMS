@@ -1,39 +1,25 @@
 <div class="main">
   <div class="container">
+
     <div class="header">
       <h1>
-        Breathe free air my friend
+        Breathe the free air my friend
       </h1>
       <h3>
         Check out the air quality in your area.
       </h3>
       <h4>
-        Click on the location you are interested in and the related charts will appear!
+        Click on the marker you are interested in and the related charts will appear!
       </h4>
     </div>
+
     <div class="body">
-      <app-map (clicked)="setDevice($event)" ></app-map>
+      <app-map (clicked)="setDevice($event)"></app-map>
     </div>
 
-    <div class="tempChart">
-      <div>Temperature chart</div>
-      <iframe [src]="tempsrc" width="450" height="200" frameborder="0"></iframe>
-    </div>
-
-    <div class="humidityChart">
-      <div>Humidity chart</div>
-      <iframe id="humsrc" [src]="humsrc" width="450" height="200" frameborder="0"></iframe>
-    </div>
-
-    <div class="airPressureChart">
-      <div>Air Pressure Chart</div>
-      <iframe [src]="pressuresrc" width="450" height="200" frameborder="0"></iframe>
-    </div>
-
-    <div class="particularDensityChart">
-      <div>Particular Density Chart</div>
-      <iframe [src]="densitysrc" width="450" height="200" frameborder="0"></iframe>
-    </div>
-
+    <iframe class="tempChart" [frameBorder]="0" [src]="tempSrc"></iframe>
+    <iframe class="humidityChart" [frameBorder]="0" [src]="humSrc"></iframe>
+    <iframe class="airPressureChart" [frameBorder]="0" [src]="pressureSrc"></iframe>
+    <iframe class="particleDensity" [frameBorder]="0" [src]="densitySrc"></iframe>
   </div>
 </div>
