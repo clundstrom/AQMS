@@ -7,30 +7,33 @@
       <h3>
         Check out the air quality in your area.
       </h3>
-      <button class="btn">Get Started</button>
-
-      <img class="notice" src="https://www.nhpr.org/sites/nhpr/files/styles/medium/public/201907/EPALogo.png"
-           width="5%">
-      <span class="notice"> We support the Clean Air Act!</span>
+      <h4>
+        Click on the location you are interested in and the related charts will appear!
+      </h4>
     </div>
     <div class="body">
       <app-map (clicked)="setDevice($event)" ></app-map>
     </div>
+
     <div class="tempChart">
       <div>Temperature chart</div>
       <iframe [src]="tempsrc" width="450" height="200" frameborder="0"></iframe>
     </div>
+
     <div class="humidityChart">
       <div>Humidity chart</div>
       <iframe id="humsrc" [src]="humsrc" width="450" height="200" frameborder="0"></iframe>
     </div>
+
     <div class="airPressureChart">
       <div>Air Pressure Chart</div>
       <iframe [src]="pressuresrc" width="450" height="200" frameborder="0"></iframe>
     </div>
+
     <div class="particularDensityChart">
       <div>Particular Density Chart</div>
       <iframe [src]="densitysrc" width="450" height="200" frameborder="0"></iframe>
     </div>
+
   </div>
 </div>
