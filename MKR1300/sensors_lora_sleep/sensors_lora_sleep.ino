@@ -4,9 +4,9 @@
 #include "keys.h"
 #include "ArduinoLowPower.h"
 
-#define DHTPIN 7      // what pin we're connected to
+#define DHTPIN 7      // what pin DHT22 is connected to
 #define DHTTYPE DHT22 // DHT 22  (AM2302)
-#define DEBUG 0
+#define DEBUG 0       // Debug does not connect to TTN
 
 DHT dht(DHTPIN, DHTTYPE); // Initialize DHT sensor for normal 16mhz Arduino
 LoRaModem modem;
@@ -30,7 +30,7 @@ bool setupBMP(Adafruit_BMP280 &bmp)
 }
 
 /*
-
+    Sets up the DHT22 sensor.
 */
 bool setupDHT(DHT &dht)
 {
@@ -44,6 +44,7 @@ bool setupModem(LoRaModem &modem)
     {
         while (1)
         { 
+          //Failed to connect
         }
     };
 
@@ -66,14 +67,12 @@ void setup()
 void loop()
 {
     
-  
-    //Read data and store it to variables hum and temp
+    //Read data and store it to variables
     uint16_t dht_tmp = dht.readTemperature() * 10;
     uint8_t hum = dht.readHumidity();
     uint16_t bmp_tmp = bmp.readTemperature();
     uint32_t pressure = bmp.readPressure();
-    uint16_t pm = ((dht_tmp/10) + 20) * 3 + random(-10, 10);
-
+    uint16_t pm = ((dht_tmp/10) + 20) * 3 + random(-10, 10); //Random function depending on temperature since dustsensor do no work
 
     // Payload
     byte payload[8];
@@ -85,9 +84,6 @@ void loop()
     payload[5] = pressure;
     payload[6] = highByte(pm);
     payload[7] = lowByte(pm);
-    
-
-    // (temp + 20) / 100 * 300 + random(-10, 10);
 
     // Transmission
     modem.setPort(3);
@@ -95,6 +91,6 @@ void loop()
     modem.write(payload, sizeof(payload));
     modem.endPacket(true);
 
-    LowPower.sleep(30000); // Sleep for 10s
-    dht.begin();
+    LowPower.sleep(30000); // Sleep for 30s
+    dht.begin(); // DHT22 stopped working after deepsleep
 }
