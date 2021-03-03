@@ -1,10 +1,9 @@
 body{
-  background: rgb(32, 164, 243);
   background: linear-gradient(
     90deg,
     rgba(32, 164, 243, 1) 14%,
     rgba(0, 212, 255, 1) 67%
-  );
+  ) fixed;
   width: 100%;
   height: auto;
 }
