@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,10 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 export class AppComponent implements OnInit {
 
-  tempUrl = '?orgId=1&panelId=2';
-  humUrl = '?orgId=1&panelId=4';
-  pressureUrl = '?orgId=1&panelId=6';
-  densityUrl = '?orgId=1&panelId=8';
+  tempUrl = '?orgId=1&theme=light&panelId=2';
+  humUrl = '?orgId=1&theme=light&panelId=4';
+  pressureUrl = '?orgId=1&theme=light&panelId=6';
+  densityUrl = '?orgId=1&theme=light&panelId=8';
 
   tempSrc: SafeResourceUrl;
   humSrc: SafeResourceUrl;
