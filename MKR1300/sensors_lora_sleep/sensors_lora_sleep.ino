@@ -70,7 +70,6 @@ void loop()
     //Read data and store it to variables
     uint16_t dht_tmp = dht.readTemperature() * 10;
     uint8_t hum = dht.readHumidity();
-    uint16_t bmp_tmp = bmp.readTemperature();
     uint32_t pressure = bmp.readPressure();
     uint16_t pm = ((dht_tmp/10) + 20) * 3 + random(-10, 10); //Random function depending on temperature since dustsensor do no work
 
@@ -85,12 +84,13 @@ void loop()
     payload[6] = highByte(pm);
     payload[7] = lowByte(pm);
 
+
     // Transmission
     modem.setPort(3);
     modem.beginPacket();
     modem.write(payload, sizeof(payload));
     modem.endPacket(true);
 
-    LowPower.sleep(30000); // Sleep for 30s
+    LowPower.sleep(3600000); // Sleep for 1h = 60min x 60sec x 1000ms
     dht.begin(); // DHT22 stopped working after deepsleep
 }
