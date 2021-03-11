@@ -54,7 +54,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     var vapnareg = L.marker([56.68428869110707, 16.34386830396531]).addTo(this.map);
     vapnareg.bindPopup("<b>Väpnaregatan</b>").openPopup();
-    vapnareg.on('click', () => { this.clicked.emit("http://85.228.187.157:3000/d-solo/jCWeLQsGk/vapnareg"); })
+    vapnareg.on('click', () => { this.clicked.emit("http://85.228.187.157:3000/d-solo/fxArqbUGz/vapnareg"); })
 
     streets.push(sjobrings);
     streets.push(vapnareg);
