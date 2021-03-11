@@ -1,9 +1,6 @@
 import { AfterViewInit, Component, OnInit, Output } from '@angular/core';
 import * as L from 'leaflet';
 import { EventEmitter } from '@angular/core';
-import "leaflet/dist/images/marker-shadow.png";
-import "leaflet/dist/images/marker-icon-2x.png";
-import "leaflet/dist/images/marker-icon.png";
 
 
 @Component({
@@ -24,13 +21,20 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
+    
   }
 
 
   private initMap(): void {
 
 
+    var customDefault = L.icon({
+			iconUrl: 'assets/marker-icon.png',
+			shadowUrl: 'assets/marker-shadow.png',
+		});
 
+    L.Marker.prototype.options.icon = customDefault;
+    
     const kalmarCoords = [56.6634, 16.3468];
 
     this.map = L.map('map', {
