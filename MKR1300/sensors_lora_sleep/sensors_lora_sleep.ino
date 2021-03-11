@@ -71,7 +71,7 @@ void loop()
     uint16_t dht_tmp = dht.readTemperature() * 10;
     uint8_t hum = dht.readHumidity();
     uint32_t pressure = bmp.readPressure();
-    uint16_t pm = ((dht_tmp/10) + 20) * 3 + random(-10, 10); //Random function depending on temperature since dustsensor do no work
+    uint16_t pm = random(5, 46); //Random function depending on temperature since dustsensor do no work
 
     // Payload
     byte payload[8];
