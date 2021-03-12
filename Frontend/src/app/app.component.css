@@ -1,22 +1,160 @@
 h4 {
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 1rem;
+  line-height: 1.2rem;
   font-weight: 300;
 }
 
 h3 {
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 1.5rem;
+  line-height: 1.2rem;
   font-weight: 400;
 }
 
 h1 {
   font-family: "Google Sans", sans-serif;
   color: #f6f7f8;
-  font-size: 52px;
-  line-height: 62px;
+  font-size: 2.3rem;
+  line-height: 1.9rem;
   font-weight: 500;
 }
+
+/* MOBILE */
+@media screen and (min-width: 100px) {
+  .container {
+    max-width: 100%;
+  }
+
+  .body {
+    height: 18rem;
+  }
+
+  .header {
+    margin: 1rem;
+  }
+  .tempChart{
+    width: 450px;
+    height: 200px;
+  }
+
+  .humidityChart{
+    width: 450px;
+    height: 200px;
+  }
+
+  .airPressureChart{
+    width: 450px;
+    height: 200px;
+  }
+  .particleDensity{
+    width: 450px;
+    height: 200px;
+  }
+}
+
+
+/* Small laptop */
+@media screen and (min-width: 800px) {
+  .container {
+    max-width: 100%;
+  }
+
+  .header {
+    margin: 1rem;
+  }
+
+  .body {
+    height: 35rem;
+  }
+
+  .tempChart{
+    width: 550px;
+    height: 200px;
+  }
+
+  .humidityChart{
+    width: 550px;
+    height: 200px;
+  }
+
+  .airPressureChart{
+    width: 550px;
+    height: 200px;
+  }
+  .particleDensity{
+    width: 550px;
+    height: 200px;
+  }
+}
+
+/* 1080p */
+@media screen and (min-width: 1680px) {
+  .container {
+    max-width: 95%;
+  }
+
+  .header {
+    margin: 1rem;
+  }
+
+  .body {
+    height: 37rem;
+  }
+
+  .tempChart{
+    width: 25%;
+    height: 200px;
+  }
+
+  .humidityChart{
+    width: 25%;
+    height: 200px;
+  }
+
+  .airPressureChart{
+    width: 25%;
+    height: 200px;
+  }
+  .particleDensity{
+    width: 25%;
+    height: 200px;
+  }
+}
+
+/* 1440p */
+@media screen and (min-width: 1921px) {
+  .container {
+    max-width: 80%;
+  }
+
+  .header {
+    margin: 2rem;
+  }
+
+  .body {
+    height: 50em;
+  }
+
+.tempChart{
+  width: 25%;
+  height: 225px;
+}
+
+.humidityChart{
+  width: 25%;
+  height: 225px;
+}
+
+.airPressureChart{
+  width: 25%;
+  height: 225px;
+}
+.particleDensity{
+  width: 25%;
+  height: 225px;
+}
+
+}
+
 
 .main {
   color: #f6f7f8;
@@ -24,13 +162,17 @@ h1 {
 }
 
 .container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
 .header {
-  margin: 2em;
   order: 1;
   width: 100%;
 }
@@ -46,65 +188,33 @@ h1 {
 
 .body {
   width: 100%;
-  height: 30rem;
   order: 2;
-  margin-bottom: .5em;
+  margin-bottom: .2em;
 }
+
+
+
 
 .tempChart {
   order: 3;
-  width: 450px;
-  height: 200px;
-  margin: .5em;
   padding: .5em;
   overflow: auto;
 }
 
 .humidityChart {
   order: 4;
-  width: 450px;
-  height: 200px;
-  margin: .5em;
   padding: .5em;
   overflow: auto;
 }
 
 .airPressureChart {
   order: 5;
-  width: 450px;
-  height: 200px;
-  margin: .5em;
   padding: .5em;
   overflow: auto;
 }
 
 .particleDensity {
   order: 6;
-  width: 450px;
-  height: 200px;
-  margin: .5em;
   padding: .5em;
   overflow: auto;
-}
-
-.btn {
-  background-color: #f6f7f8;
-  border-radius: 20px;
-  display: inline-block;
-  cursor: pointer;
-  color: #20a6f3;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 12px 44px;
-  margin-top: 10px;
-  text-decoration: none;
-}
-
-.btn:hover {
-  background-color: #e3e6e8;
-}
-
-.btn:active {
-  position: relative;
-  top: 1px;
 }
